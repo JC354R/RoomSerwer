@@ -26,6 +26,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         szkolaDataBase.getNauczycielDAO().wstawNauczycielaDoBazy(
-                new Nauczyciel( "Bibiana", "matematyka"));
+                new Nauczyciel( "amelka", "Biologia"));
     }
 }
