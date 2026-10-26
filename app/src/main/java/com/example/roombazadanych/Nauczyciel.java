@@ -17,4 +17,7 @@ public class Nauczyciel {
         Imie = imie;
         this.przedmiot = przedmiot;
     }
+
+    public Nauczyciel() {
+    }
 }
