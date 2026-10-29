@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">RoomBazaDanych</string>
     <string-array name="przedmioty">
-        <item>Wychowanie fizyczne</item>
-        <item>jezyk polski</item>
-        <item>jezyk angielski</item>
-        <item>biologia</item>
+        <item>WF</item>
+        <item>plastyka</item>
+        <item>informatyka</item>
+        <item>programowanie</item>
         <item>fizyka</item>
-        <item>chemia</item>
-        <item>geografia</item>
+        <item>angielski</item>
+        <item>polski</item>
     </string-array>
 </resources>

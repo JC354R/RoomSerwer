@@ -17,17 +17,20 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     SzkolaDataBase szkolaDataBase;
-    Button button;
+    Button button, buttonAktualizuj;
     EditText editText;
     Spinner spinner;
     ListView listView;
     List<Nauczyciel> nauczycielList;
     ArrayAdapter<Nauczyciel> arrayAdapter;
+    Nauczyciel kliknietyNauczyciel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +49,12 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editTextText2);
         spinner = findViewById(R.id.spinner);
         listView = findViewById(R.id.listView);
+
         nauczycielList = szkolaDataBase.getNauczycielDAO().zwrocWszystkichNauczycieli();
         arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, nauczycielList);
         listView.setAdapter(arrayAdapter);
+
+        buttonAktualizuj = findViewById(R.id.buttonAktualizuj);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +68,19 @@ public class MainActivity extends AppCompatActivity {
                 arrayAdapter.notifyDataSetChanged();
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                kliknietyNauczyciel = nauczycielList.get(i);
+                //wypelniony formularz
+                editText.setText(kliknietyNauczyciel.Imie);
+                ArrayList <String> przedmioty = new ArrayList<>(Arrays.asList( "WF", "plastyka", "informatyka", "programowanie", "fizyka", "angielski", "polski"));
+                spinner.setSelection(przedmioty.indexOf(kliknietyNauczyciel.przedmiot));
+                buttonAktualizuj.setVisibility(view.VISIBLE);
+            }
+        });
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
