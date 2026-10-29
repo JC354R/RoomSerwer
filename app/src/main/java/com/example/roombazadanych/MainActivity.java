@@ -2,6 +2,7 @@ package com.example.roombazadanych;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,6 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     SzkolaDataBase szkolaDataBase;
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     Spinner spinner;
     ListView listView;
+    List<Nauczyciel> nauczycielList;
+    ArrayAdapter<Nauczyciel> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editTextText2);
         spinner = findViewById(R.id.spinner);
         listView = findViewById(R.id.listView);
+        nauczycielList = szkolaDataBase.getNauczycielDAO().zwrocWszystkichNauczycieli();
+        arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, nauczycielList);
+        listView.setAdapter(arrayAdapter);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
                         spinner.getSelectedItem().toString()
                         );
                 szkolaDataBase.getNauczycielDAO().wstawNauczycielaDoBazy(nauczyciel);
+                nauczycielList.add(nauczyciel);
+                arrayAdapter.notifyDataSetChanged();
             }
         });
-
-
     }
 }

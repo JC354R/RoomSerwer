@@ -20,4 +20,12 @@ public class Nauczyciel {
 
     public Nauczyciel() {
     }
+
+    @Override
+    public String toString() {
+        return "Nauczyciel{" +
+                "przedmiot='" + przedmiot + '\'' +
+                ", Imie='" + Imie + '\'' +
+                '}';
+    }
 }
