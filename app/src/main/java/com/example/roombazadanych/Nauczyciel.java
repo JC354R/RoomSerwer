@@ -23,8 +23,7 @@ public class Nauczyciel {
 
     @Override
     public String toString() {
-        return "Nauczyciel{" +
-                "przedmiot='" + przedmiot + '\'' +
+        return  "przedmiot='" + przedmiot + '\n' +
                 ", Imie='" + Imie + '\'' +
                 '}';
     }
