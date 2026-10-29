@@ -90,5 +90,16 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        buttonAktualizuj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                kliknietyNauczyciel.Imie = editText.getText().toString();
+                kliknietyNauczyciel.przedmiot = spinner.getSelectedItem().toString();
+                buttonAktualizuj.setVisibility(view.INVISIBLE);
+                szkolaDataBase.getNauczycielDAO().zaktualicujDaneNauczyciela(kliknietyNauczyciel);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }
